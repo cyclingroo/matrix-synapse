@@ -13,7 +13,7 @@
 # e.g. matrix.org, localhost:8080, etc.
 # This is also the last part of your UserID.
 #
-server_name: "synapse.lobostrategies.duckdns.org"
+server_name: "Your_Server_Name"
 
 # When running as a daemon, the file to store the pid in
 #
@@ -35,7 +35,7 @@ web_client_location: https://riot.lobostrategies.duckdns.org/
 # use synapse with a reverse proxy, this should be the URL to reach
 # synapse via the proxy.
 #
-public_baseurl: https://synapse.lobostrategies.duckdns.org/
+public_baseurl: Your_baseurl
 
 # Set the soft limit on the number of file descriptors synapse can use
 # Zero is used to indicate synapse should set the soft limit to the
@@ -658,9 +658,9 @@ caches:
 database:
   name: psycopg2
   args:
-    user: synapse
+    user: Your_UserID
     # From your docker-compose.yml
-    password: YOUR_PASSWORD_HERE
+    password: Your_Password
     database: synapse
 
     # This hostname is accessible through the docker network and is set 
@@ -672,7 +672,7 @@ database:
 # A yaml python logging config file as described by
 # https://docs.python.org/3.7/library/logging.config.html#configuration-dictionary-schema
 #
-log_config: "/data/synapse.lobostrategies.duckdns.org.log.config"
+log_config: "Your_Log_Config_Path.log.config"
 
 
 ## Ratelimiting ##
@@ -983,7 +983,7 @@ url_preview_accept_language:
 
 # Enable registration for new users.
 #
-enable_registration: false
+enable_registration: true
 
 # Optional account validity configuration. This allows for accounts to be denied
 # any request after a given period.
@@ -1088,7 +1088,7 @@ account_validity:
 # If set, allows registration of standard or admin accounts by anyone who
 # has the shared secret, even if registration is otherwise disabled.
 #
-registration_shared_secret: "j9N5@GFM+pIiIvq3W9+FJNFhGLwDa8rY#hM9NN@t&KG4uPo@wK"
+registration_shared_secret: "Your_Registration_Shared_Secret"
 
 # Set the number of bcrypt rounds used to generate password hash.
 # Larger numbers increase the work factor needed to generate the hash.
@@ -1265,19 +1265,19 @@ report_stats: true
 # the registration_shared_secret is used, if one is given; otherwise,
 # a secret key is derived from the signing key.
 #
-macaroon_secret_key: "G_ePvvanMv_i#;ksrZ_1YRulTVxB0iP3iJv0p*Um9UUf5.lox~"
+macaroon_secret_key: "Your_Generated_Secret"
 
 # a secret which is used to calculate HMACs for form values, to stop
 # falsification of values. Must be specified for the User Consent
 # forms to work.
 #
-form_secret: "kMTws65u9BN;t&CJ*#BLT64#U_pE:3t#RyBYrjkX0ksenmyIZv"
+form_secret: "Another_Generated_Secret"
 
 ## Signing Keys ##
 
 # Path to the signing key to sign messages with
 #
-signing_key_path: "/data/synapse.lobostrategies.duckdns.org.signing.key"
+signing_key_path: "Your_Signing_Key_Path.signing.key"
 
 # The keys that the server used to sign messages with but won't use
 # to sign new messages.
@@ -1783,7 +1783,7 @@ password_config:
 email:
   # The hostname of the outgoing SMTP server to use. Defaults to 'localhost'.
   #
-  smtp_host: mail.lobostrategies.com
+  smtp_host: Your_SMTP_Server
 
   # The port on the mail server for outgoing SMTP. Defaults to 25.
   #
@@ -1792,8 +1792,8 @@ email:
   # Username/password for authentication to the SMTP server. By default, no
   # authentication is attempted.
   #
-  smtp_user: lbolsen@lobostrategies.com
-  smtp_pass: AIM4PlB4L6D5IxE7
+  smtp_user: Your_SMTP_UserID
+  smtp_pass: Your_SMTP_Password
 
   # Uncomment the following to require TLS transport security for SMTP.
   # By default, Synapse will connect over plain text, and will then switch to
