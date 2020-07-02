@@ -1,0 +1,60 @@
+version: "2"
+services:
+  postgres:
+    image: postgres:9.6.4
+    restart: unless-stopped
+    networks:
+      - default
+    volumes:
+     - /opt/matrix/pgdata:/var/lib/postgresql/data
+    environment:
+     - POSTGRES_PASSWORD=Your_Password
+     - POSTGRES_USER=Your_Userid
+    labels:
+      - "traefik.enable=false"
+
+  synapse:
+    image: avhost/docker-matrix:v1.0.0
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - web
+      - default
+    ports:
+     # Coturn
+     - "3478:3478"
+     - "5349:5349"
+    volumes:
+     - /opt/matrix/synapse:/data
+    labels:
+      - "traefik.backend=synapse"
+      - "traefik.enable=true"
+      - "traefik.frontend=true"
+      - "traefik.port=8008"
+      - "traefik.frontend.rule=Host:synapse.example.com"
+      - "traefik.docker.network=web"
+
+  nginx:
+    image: nginx:1.12-alpine
+    restart: unless-stopped
+    networks:
+      - web
+      - default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:lobostrategies.duckdns.org"
+      - "traefik.frontend.passHostHeader=true"
+      - "traefik.port=80"
+      - "traefik.docker.network=web"
+    volumes:
+      - ./nginx/matrix.conf:/etc/nginx/conf.d/matrix.conf
+      - ./nginx/www:/var/www/
+
+networks:
+  default:
+    external:
+      name: matrix
+  # Traefiks network
+  web:
+    external: true
