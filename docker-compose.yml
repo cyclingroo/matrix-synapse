@@ -6,10 +6,10 @@ services:
     networks:
       - default
     volumes:
-     - /opt/matrix/pgdata:/var/lib/postgresql/data
+      - /opt/matrix/pgdata:/var/lib/postgresql/data
     environment:
-     - POSTGRES_PASSWORD=Your_Password
-     - POSTGRES_USER=Your_Userid
+      - POSTGRES_USER=Your_Userid
+      - POSTGRES_PASSWORD=Your_Password
     labels:
       - "traefik.enable=false"
 
